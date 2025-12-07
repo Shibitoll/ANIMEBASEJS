@@ -1,0 +1,87 @@
+/* src/components/Header.css */
+
+.main-header {
+    background-color: #0d0d0d;
+    padding: 15px 50px;
+    border-bottom: 1px solid #222;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff4d4d;
+}
+
+/* --- NAVIGATION --- */
+.main-nav {
+    display: flex;
+    gap: 25px;
+    margin-left: 30px;
+}
+
+.nav-link {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 5px 0;
+    transition: color 0.2s;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #fff;
+    border-bottom: 2px solid #ff4d4d;
+}
+
+/* --- SEARCH & LOGIN --- */
+.search-and-login {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-bar {
+    position: relative;
+}
+
+.search-bar input {
+    background-color: #1e1e1e;
+    color: #fff;
+    border: none;
+    padding: 10px 15px 10px 40px; 
+    border-radius: 20px;
+    width: 250px;
+    font-size: 14px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+.login-btn {
+    background: none;
+    border: 1px solid #333;
+    color: #ccc;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+    background-color: #222;
+}

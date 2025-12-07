@@ -1,0 +1,92 @@
+/* src/components/FeaturedSection.css */
+
+.featured-section {
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.featured-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.2) 70%, transparent 100%);
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+}
+
+.featured-content {
+    max-width: 600px;
+    padding-left: 0; 
+}
+
+.tags .tag {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.tags .featured {
+    background-color: #ff4d4d; /* Червоний */
+    color: white;
+}
+
+.tags .completed {
+    background-color: #fff;
+    color: #121212;
+}
+
+.featured-content h1 {
+    font-size: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 18px;
+    color: #ccc;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.meta-details {
+    margin: 20px 0;
+    font-size: 16px;
+    color: #aaa;
+}
+
+.meta-details span {
+    margin-right: 15px;
+}
+
+.action-buttons button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: opacity 0.2s;
+}
+
+.watch-now-btn {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.more-info-btn {
+    background-color: #333;
+    color: white;
+}
