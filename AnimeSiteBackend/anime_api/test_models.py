@@ -32,8 +32,7 @@ class AnimeModelTest(TestCase):
     def test_featured_status(self):
         """R1.2: Перевірка коректності статусу 'featured'."""
         self.assertTrue(self.anime.is_featured)
-
-def test_is_ongoing_status_creation(self):
+    def test_is_ongoing_status_creation(self):
         """R1.4: Перевірка, що статус 'Ongoing' коректно зберігається."""
         
         # ДОДАНО year, episodes, rating та інші обов'язкові поля
