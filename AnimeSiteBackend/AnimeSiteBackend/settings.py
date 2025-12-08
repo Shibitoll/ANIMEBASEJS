@@ -12,6 +12,17 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Application definition
+COVERAGE_REPORT_HTML_OUTPUT = "coverage_html" # Папка для HTML-звіту
+
+# Налаштування покриття для ігнорування стандартних Django файлів
+COVERAGE_EXCLUDE_FILES = [
+    '*/migrations/*',
+    '*/tests/*',
+    '*/urls.py',
+    '*/wsgi.py',
+    '*/asgi.py',
+    '*/admin.py',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -24,7 +35,8 @@ INSTALLED_APPS = [
     # ВАШІ ДОДАТКИ
     'anime_api.apps.AnimeApiConfig', 
     'rest_framework',              
-    'corsheaders',                 
+    'corsheaders',
+    'user_api.apps.UserApiConfig',                 
 ]
 
 MIDDLEWARE = [

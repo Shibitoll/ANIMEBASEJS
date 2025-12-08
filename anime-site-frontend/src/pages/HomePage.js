@@ -30,7 +30,7 @@ const HomePage = () => {
                 setLoading(false);
             });
     }, []);
-    
+
     const recentReleases = animeList.slice(0, 3);
     const popularAnime = animeList.slice(0, 6); 
 
