@@ -1,28 +1,11 @@
-# AnimeSiteBackend/settings.py
 import os
 from pathlib import Path
+from datetime import timedelta
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-SECRET_KEY = 'django-insecure-8q3t*d+v1g1g^b5i&a@q6r!p7m4x2k#y0u3n9j&s8l'
-
-DEBUG = True 
-
+SECRET_KEY = 'django-insecure-test-key'
+DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-
-# Application definition
-COVERAGE_REPORT_HTML_OUTPUT = "coverage_html" # Папка для HTML-звіту
-
-# Налаштування покриття для ігнорування стандартних Django файлів
-COVERAGE_EXCLUDE_FILES = [
-    '*/migrations/*',
-    '*/tests/*',
-    '*/urls.py',
-    '*/wsgi.py',
-    '*/asgi.py',
-    '*/admin.py',
-]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -31,12 +14,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    # ВАШІ ДОДАТКИ
-    'anime_api.apps.AnimeApiConfig', 
-    'rest_framework',              
+
+    # Сторонні бібліотеки
+    'rest_framework',
+    'rest_framework_simplejwt',
     'corsheaders',
-    'user_api.apps.UserApiConfig',                 
+
+    # ВАШІ ДОДАТКИ (ПЕРЕВІРТЕ ЦЮ ЧАСТИНУ)
+    'anime_api.apps.AnimeApiConfig',
+    'user_api.apps.UserApiConfig',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +41,7 @@ ROOT_URLCONF = 'AnimeSiteBackend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [], 
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,7 +56,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'AnimeSiteBackend.wsgi.application'
 
-# Database configuration
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -78,31 +63,40 @@ DATABASES = {
     }
 }
 
-# ... (інші налаштування: AUTH_PASSWORD_VALIDATORS, LANGUAGE_CODE, TIME_ZONE)
-
-
-# Для CSS, JS, зображень адмінки
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
-
-# Для зображень аніме
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
-
-
-# Default primary key field type
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-# --- CORS & REST FRAMEWORK SETTINGS ---
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+AUTH_PASSWORD_VALIDATORS = [
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', 'OPTIONS': {'min_length': 8}},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_TZ = True
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"]
+
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ]
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'AUTH_HEADER_TYPES': ('Bearer',),
 }
